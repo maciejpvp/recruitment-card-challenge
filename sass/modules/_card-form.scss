@@ -1,0 +1,146 @@
+@use 'variables' as *;
+
+.card__form {
+  background: $color-white;
+  border-radius: $radius-form;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  padding: 80px 36px 36px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+
+    &--expiry {
+      flex: 1;
+      margin-right: 16px;
+    }
+
+    &--cvv {
+      width: 130px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: $color-label;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  &__input {
+    border: 1.5px solid $color-border;
+    border-radius: $radius-input;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    font-family: $font-family;
+    color: #1a2840;
+    background: $color-input-bg;
+    outline: none;
+    width: 100%;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: #b0bdd0;
+    }
+
+    &:focus {
+      border-color: $color-submit;
+      box-shadow: 0 0 0 3px rgba(42, 109, 232, 0.1);
+    }
+  }
+
+  &__selects {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__select {
+    border: 1.5px solid $color-border;
+    border-radius: $radius-input;
+    padding: 10px 10px;
+    font-size: 0.9rem;
+    font-family: $font-family;
+    color: #1a2840;
+    background: $color-select;
+    outline: none;
+    flex: 1;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    appearance: auto;
+
+    &:focus {
+      border-color: $color-submit;
+      box-shadow: 0 0 0 3px rgba(42, 109, 232, 0.1);
+    }
+  }
+
+  &__submit {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 24px;
+    background: $color-submit;
+    color: $color-white;
+    border: none;
+    border-radius: $radius-input;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: $font-family;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition:
+      background 0.2s ease,
+      transform 0.1s ease,
+      box-shadow 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: $color-submit-hover;
+      box-shadow: 0 4px 16px rgba(42, 109, 232, 0.35);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .card__form {
+    padding: 80px 20px 24px;
+  }
+
+  .card__form__row {
+    flex-direction: column;
+
+    .card__form__group--expiry {
+      margin-right: 0;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+
+    .card__form__group--cvv {
+      width: 100%;
+    }
+  }
+}

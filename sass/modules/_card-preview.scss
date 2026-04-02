@@ -1,0 +1,276 @@
+@use 'variables' as *;
+
+// Ensure spans preserve space width
+.card__preview__value span,
+.card__preview__number span,
+.card__preview__back__cvv-value span {
+  display: inline-block;
+  white-space: pre;
+}
+
+// Card wrapper
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__preview {
+  pointer-events: none;
+  user-select: none;
+  position: relative;
+  width: 340px;
+  height: 210px;
+  z-index: 2;
+  margin-bottom: -50px;
+  perspective: 1000px;
+
+  // Inner wrapper
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: $radius-card;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  // Flip state
+  &.is-flipped &__inner {
+    transform: rotateY(180deg);
+  }
+
+  // Floating Focus Ring
+  &__focus-ring {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  // Shared face styles
+  &__face {
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-card;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    color: $color-card-text;
+    font-family: 'Courier New', monospace;
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  // card image
+  &__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  // Front of card
+
+  &__chip {
+    position: absolute;
+    top: 28px;
+    left: 24px;
+    z-index: 2;
+
+    &-img {
+      width: 52px;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+
+    &-img {
+      height: 30px;
+      display: block;
+
+      &--visa {
+        display: block;
+      }
+
+      &--mastercard {
+        display: none;
+      }
+    }
+  }
+
+  &__number {
+    position: absolute;
+    bottom: 78px;
+    left: 10px;
+    right: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    z-index: 2;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    padding: 4px 24px;
+    white-space: nowrap;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 18px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+    margin-bottom: 2px;
+    font-family: $font-family;
+  }
+
+  &__value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__holder {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 6px;
+
+    text-wrap: balance;
+  }
+
+  &__expires {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 4px 10px;
+    min-width: 72px;
+    text-align: center;
+
+    .card__preview__label {
+      text-align: center;
+    }
+
+    .card__preview__value {
+      font-size: 0.9rem;
+    }
+  }
+
+  // Back of card
+
+  &__back__stripe {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    height: 46px;
+    background: #1a1a1a;
+    z-index: 2;
+  }
+
+  &__back__cvv-row {
+    position: absolute;
+    top: 102px;
+    left: 2.5%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 2;
+    gap: 4px;
+  }
+
+  &__back__cvv-label {
+    font-family: $font-family;
+    font-size: 0.62rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  &__back__cvv-strip {
+    width: 100%;
+    background: $color-white;
+    border-radius: 3px;
+    padding: 8px 14px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 36px;
+  }
+
+  &__back__cvv-value {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a2840;
+    letter-spacing: 0.2em;
+  }
+
+  &__back__logo {
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+
+    &-img {
+      height: 28px;
+      display: block;
+
+      &--visa {
+        display: block;
+      }
+
+      &--mastercard {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .card__preview {
+    width: 100%;
+    height: 190px;
+
+    &__number {
+      font-size: 1.15rem;
+    }
+  }
+}

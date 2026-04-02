@@ -1,0 +1,7 @@
+node_modules
+dist
+package-lock.json
+*.gif
+*.jpg
+*.png
+# Ignore generated files if any

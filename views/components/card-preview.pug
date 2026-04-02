@@ -1,0 +1,36 @@
+.card__preview
+    .card__preview__inner
+        //- ── Front face ──────────────────────────────────────────
+        .card__preview__face.card__preview__face--front
+            .card__preview__focus-ring
+            .card__preview__background
+                +addPicture('background.jpg', 'card__preview__bg-img', '')
+            .card__preview__chip
+                +addPicture('chip.png', 'card__preview__chip-img', '')
+            .card__preview__logo
+                +addPicture('visa.png', 'card__preview__logo-img card__preview__logo-img--visa', '')
+                +addPicture('mastercard.png', 'card__preview__logo-img card__preview__logo-img--mastercard', '')
+            .card__preview__number#card-preview-number #### #### #### ####
+            .card__preview__info
+                .card__preview__holder
+                    span.card__preview__label Card Holder
+                    span.card__preview__value#card-preview-name Full Name
+                .card__preview__expires
+                    span.card__preview__label Expires
+                    span.card__preview__value
+                        span#card-preview-month MM
+                        | /
+                        span#card-preview-year YY
+
+        //- ── Back face ───────────────────────────────────────────
+        .card__preview__face.card__preview__face--back
+            .card__preview__background
+                +addPicture('background.jpg', 'card__preview__bg-img', '')
+            .card__preview__back__stripe
+            .card__preview__back__cvv-row
+                span.card__preview__back__cvv-label CVV
+                .card__preview__back__cvv-strip
+                    span.card__preview__back__cvv-value#card-preview-cvv
+            .card__preview__back__logo
+                +addPicture('visa.png', 'card__preview__back__logo-img card__preview__back__logo-img--visa', '')
+                +addPicture('mastercard.png', 'card__preview__back__logo-img card__preview__back__logo-img--mastercard', '')

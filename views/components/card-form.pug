@@ -1,0 +1,58 @@
+form.card__form(novalidate)
+    .card__form__group
+        label.card__form__label(for='input-card-number') Card Number
+        input.card__form__input(
+            id='input-card-number'
+            type='text'
+            placeholder='#### #### #### ####'
+            maxlength='19'
+            autocomplete='cc-number'
+        )
+
+    .card__form__group
+        label.card__form__label(for='input-card-name') Card Name
+        input.card__form__input(
+            id='input-card-name'
+            type='text'
+            placeholder='Full Name'
+            autocomplete='cc-name'
+        )
+
+    .card__form__row
+        .card__form__group.card__form__group--expiry
+            label.card__form__label(for='input-expiry-month') Expiration Date
+            .card__form__selects
+                select.card__form__select(id='input-expiry-month' autocomplete='cc-exp-month')
+                    option(value='' disabled selected) Month
+                    option(value='01') 01
+                    option(value='02') 02
+                    option(value='03') 03
+                    option(value='04') 04
+                    option(value='05') 05
+                    option(value='06') 06
+                    option(value='07') 07
+                    option(value='08') 08
+                    option(value='09') 09
+                    option(value='10') 10
+                    option(value='11') 11
+                    option(value='12') 12
+                select.card__form__select(id='input-expiry-year' autocomplete='cc-exp-year')
+                    option(value='' disabled selected) Year
+                    - var currentYear = new Date().getFullYear()
+                    - var i = 0
+                    while i <= 10
+                        - var year = currentYear + i
+                        option(value=year.toString().slice(-2))= year
+                        - i++
+
+        .card__form__group.card__form__group--cvv
+            label.card__form__label(for='input-cvv') CVV
+            input.card__form__input(
+                id='input-cvv'
+                type='text'
+                placeholder='···'
+                maxlength='4'
+                autocomplete='cc-csc'
+            )
+
+    button.card__form__submit(type='submit') Submit

@@ -1,5 +1,5 @@
-import custom from './modules/custom'
+import custom from './modules/custom';
 
 window.addEventListener('load', () => {
-    custom()
-})
+  custom();
+});
