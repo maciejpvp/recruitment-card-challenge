@@ -71,7 +71,7 @@ export function setupEventListeners(refs) {
   const submitBtn = form.querySelector('.card__form__submit');
 
   const validateForm = () => {
-    const numberValid = inputNumber.value.replace(/\s/g, '').length >= 15;
+    const numberValid = inputNumber.value.replace(/\s/g, '').length >= 16;
     const nameValid = inputName.value.trim().length > 0;
     const monthValid = inputMonth.value !== '';
     const yearValid = inputYear.value !== '';
